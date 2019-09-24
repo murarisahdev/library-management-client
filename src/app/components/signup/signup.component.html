@@ -1,0 +1,57 @@
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <div>
+                <h1><strong>Sign Up</strong></h1>
+                <h4>Sign Up For A New Account</h4><br>
+                <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-user icon"></i></span>
+                        </div>
+                        <input type="text" class="form-control" formControlName="username" placeholder="Username" required />
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-id-card"></i></span>
+                        </div>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Email" required />
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control" formControlName="password" placeholder="Enter Password" required />
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Enter Password Again" required />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" [disabled]="!signUpForm.valid" class="btnSubmit"><span style="font-size: 20px;">Sign Up</span></button>
+                    </div>
+                    <div class="alert alert-warning" role="alert" *ngIf="statusMessage">
+                        {{statusMessage}}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 login-form-2">
+            <div>
+                <h1 class="text-xs-center">Login</h1>
+                <div class="form-group">
+                    <font size="4">Join us today to read your favorite books !</font>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btnSubmit text-xs-center" routerLink="/login" routerLinkActive="active"><span style="font-size: 20px;">Login</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

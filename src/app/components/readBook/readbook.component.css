@@ -1,0 +1,21 @@
+.topbanner {
+    background-image: -webkit-linear-gradient(145deg, #fdd982 0%, #ff634d 100%);
+    text-align: center;
+}
+
+img {
+    max-width: 50%;
+    height: auto;
+}
+
+.detailButton {
+    background-image: -webkit-linear-gradient(145deg, #fdd982 0%, #ff634d 100%);
+    border: none;
+    border-radius: 40px;
+}
+
+.topBadge {
+    background-image: -webkit-linear-gradient(145deg, #fdd982 0%, #fdd982 100%);
+    border: none;
+    border-radius: 40px;
+}

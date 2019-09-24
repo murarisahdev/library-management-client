@@ -1,0 +1,154 @@
+<app-navbar></app-navbar>
+
+<div id="mySidenav" class="sidenav" *ngIf="isAdmin()">
+    <a data-toggle="modal" data-target="#updateModal" id="update" (click)=updateBook(bookInfo?.id)>Update</a>
+    <a id="delete" (click)="deleteBook(bookInfo?.id)">Delete </a>
+    <a data-toggle="modal" id="updateBookCover" imageUpload data-target="#updateBookCoverModal">Update Cover&nbsp;&nbsp;</a>
+    <a data-toggle="modal" id="updateBookPdf" imageUpload data-target="#updateBookPdfModal">Update Pdf &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+</div>
+
+<section class="topbanner" id="dashboard">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-start">
+            <div class="col-lg-7">
+                <h1 class="text-uppercase display-4">
+                    <strong>{{bookInfo?.name}}</strong>
+                </h1>
+                <button type="button" class="btn topBadge" (click)="readBook(bookInfo?.id)">Read Book</button>
+            </div>
+            <div class="col-lg-5 banner-right">
+                <img class="img-fluid headerImg" src="../../../assets/img/header-img.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+
+<div class="whole-wrap">
+    <div class="container">
+        <div class="section-top-border">
+            <h3 class="mb-30"></h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{bookInfo?.book_cover}}" alt="" class="img-fluid bookImg">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <p class="card-title h4 text-success"><strong>Category:</strong> {{bookInfo?.category.name}}</p><br>
+                    <div *ngFor="let author of bookInfo?.author">
+                        <p class="card-title h4"><strong>Author:</strong> {{author?.name}}</p><br>
+                    </div>
+                    <p class="card-text h4"><strong>Description:</strong> {{bookInfo?.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <div class="input-group" *ngIf="canReviewBook()">
+                <input type="text" class="form-control" name="review" [(ngModel)]='reviewValue' id="review" placeholder="Review">&nbsp;&nbsp;
+                <button type="button" class="btn detailButton" (click)="reviewBook(reviewValue, bookInfo?.id)">Review</button>
+            </div>
+        </div>
+    </div>
+    <div class="section-top-border">
+        <h3 class="mb-30">Reviews</h3>
+        <div class="row">
+            <div class="col-lg-12" *ngFor="let peopleReview of bookInfo?.reviews">
+                <blockquote class="generic-blockquote">
+                    “{{peopleReview?.review}}”
+                </blockquote>
+            </div>
+            <div class="col-lg-12" *ngIf="bookInfo?.reviews.length === 0">
+                <blockquote class="generic-blockquote">
+                    “No Reviews Yet”
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Book</h5>
+                <button type="button" id="closeModalUpdate" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="updateBookForm" (ngSubmit)="updateBookSubmit(bookInfo?.id)">
+                    <div class="form-group input-group">
+                        <span class="input-group">Book Name: </span><br>
+                        <input type="text" class="form-control" formControlName="name" placeholder="Enter Book Name" required />
+                    </div>
+
+                    <div class="form-group input-group">
+                        <span class="input-group">Book Category: </span>
+                        <select class="custom-select" formControlName="category" id="inputGroupSelect01" required>
+                                                <option *ngFor="let category of categoryList" value={{category?.id}}>{{category?.name}}</option>
+                                        </select>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <span class="input-group">Book Author: </span>
+                        <select class="custom-select" formControlName="author" id="inputGroupSelect01" required>
+                                            <option *ngFor="let author of authorList" value="{{author?.id}}">{{author?.name}}</option>
+                                         </select>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <span class="input-group">Book Description: </span><br>
+                        <input type="text" class="form-control" formControlName="description" placeholder="Enter Book Description" required />
+                    </div>
+                    <button type="submit" class="btn detailButton" id="btnUpdate">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateBookCoverModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Book Cover</h5>
+                <button type="button" id="closeModal" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="uploadBookCover" (ngSubmit)="updateBookCover(bookInfo?.id)">
+                    <input formControlName="book_cover" class="form-control" name="book_cover" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/><br>
+                    <button type="submit" [disabled]="!uploadBookCover.valid" class="btn detailButton" id="btnUpdate">Update Book Cover</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateBookPdfModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Book Pdf</h5>
+                <button type="button" id="closeModalPdf" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="uploadBookPdf" (ngSubmit)="updatePdf(bookInfo?.id)">
+                    <input formControlName="file" class="form-control" name="file" type="file" (change)="updatePdfEvent($event)" placeholder="Upload a pdf..." multiple/><br>
+                    <span class="input-note"><b>Note:</b> Maximum upload size limit 50 MB only
+                    </span><br><br>
+                    <button type="submit" [disabled]="!uploadBookPdf.valid" class="btn detailButton" id="btnUpdate">Update Book Pdf</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

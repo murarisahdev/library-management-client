@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+<!-- Admin Nav -->
+<div id="mySidenav" class="sidenav" *ngIf="isAdmin()">
+    <a data-toggle="modal" data-target="#createModal" id="create">Create</a>
+</div>
+
+<!-- Header -->
+<section class="topbanner" id="dashboard">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-start">
+            <div class="col-lg-7">
+                <h1 class="text-uppercase display-4">
+                    <strong>All Authors</strong>
+                </h1>
+                <button type="button" class="btn topBadge">
+                    Total Authors <span class="badge badge-light">{{totalAuthors}}</span>
+                </button>
+            </div>
+            <div class="col-lg-5 banner-right">
+                <img class="img-fluid" src="../../../assets/img/header-img.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+
+<!-- Content -->
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-md-6" *ngFor="let author of authorList">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary h2">{{author.name}}</strong><br>
+                    <button type="button" class="btn detailButton" (click)="authorDetail(author.id)">Author Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Modal (Admin) -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create New Author</h5>
+                <button type="button" class="close" id="closeModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createAuthorForm" (ngSubmit)="createAuthorSubmit()">
+                    <div class="form-group input-group">
+                        <span class="input-group">Author Name: </span>
+                        <input type="text" class="form-control" formControlName="name" placeholder="Enter Author Name" required />
+                    </div>
+
+                    <button type="submit" class="btn detailButton" [disabled]="!createAuthorForm.valid">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

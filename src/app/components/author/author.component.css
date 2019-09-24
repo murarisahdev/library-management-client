@@ -1,0 +1,49 @@
+.topbanner {
+    background-image: -webkit-linear-gradient(145deg, #fdd982 0%, #ff634d 100%);
+    text-align: center;
+}
+
+img {
+    max-width: 50%;
+    height: auto;
+}
+
+#mySidenav a {
+    position: fixed;
+    left: -75px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 120px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    border-radius: 0 5px 5px 0;
+    z-index: 1;
+}
+
+#mySidenav a:after {
+    content: '  \f067';
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+}
+
+#mySidenav a:hover {
+    left: 0;
+}
+
+#create {
+    top: 60px;
+    background-color: #f4e700;
+}
+
+.detailButton {
+    background-image: -webkit-linear-gradient(145deg, #fdd982 0%, #ff634d 100%);
+    border: none;
+    border-radius: 40px;
+}
+
+.topBadge {
+    background-image: -webkit-linear-gradient(145deg, #fdd982 0%, #fdd982 100%);
+    border: none;
+    border-radius: 40px;
+}

@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+
+<section class="topbanner" id="dashboard">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-start">
+            <div class="col-lg-7">
+                <h1 class="text-uppercase display-4">
+                    <strong>{{bookContent?.name}}</strong>
+                </h1>
+                <a class="btn topBadge" routerLink="/bookdetail/{{bookContent?.id}}" routerLinkActive="active">Book Detail</a>
+            </div>
+            <div class="col-lg-5 banner-right">
+                <img class="img-fluid" src="../../../assets/img/header-img.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+
+<!-- Start PDF Area -->
+<section class="about-generic-area section-gap">
+    <div class="container border-top-generic">
+        <div class="justify-content-center container">
+            <pdf-viewer [src]="bookContent?.file" [render-text]="true" (after-load-complete)="afterLoadComplete($event)" [show-all]="false" [page]="currentPage" [original-size]="false" style="display: block;"></pdf-viewer>
+        </div>
+    </div>
+    <div class="col-md-12 text-center btn-group" role="group">
+        <button type="button" (click)="previousPage()" [disabled]="currentPage === 1" class="btn topBadge">
+      <<</button> <button type="button" class="btn btn-detailButton">{{ currentPage }} / {{ totalPages }}
+    </button>
+        <button type="button" (click)="nextPage()" [disabled]="totalPages === currentPage" class="btn topBadge">>></button>
+    </div>
+</section><br>
+
+<app-footer></app-footer>

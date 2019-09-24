@@ -1,0 +1,13 @@
+.footer-area {
+    padding-top: 100px;
+    background-color: #222222;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}

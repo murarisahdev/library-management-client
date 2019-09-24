@@ -1,0 +1,98 @@
+.topbanner {
+    background-image: -webkit-linear-gradient(145deg, #fdd982 0%, #ff634d 100%);
+    text-align: center;
+}
+
+.headerImg {
+    max-width: 50%;
+    height: auto;
+}
+
+.bookImg {
+    max-width: 60%;
+    max-height: 100%;
+}
+
+#mySidenav a {
+    position: fixed;
+    left: -75px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 120px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    border-radius: 0 5px 5px 0;
+    z-index: 1;
+}
+
+#mySidenav a:hover {
+    left: 0;
+}
+
+#mySidenav a#update:after {
+    content: '\f044';
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+}
+
+#update {
+    top: 120px;
+    background-color: #007bff;
+}
+
+#delete {
+    top: 180px;
+    background-color: #dc3545;
+}
+
+#mySidenav a#delete:after {
+    content: '\f1f8';
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+}
+
+#mySidenav a#updateBookCover:after {
+    content: '\f044';
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+}
+
+#updateBookCover {
+    top: 240px;
+    background-color: #28a745;
+}
+
+#mySidenav a#updateBookPdf:after {
+    content: '\f044';
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+}
+
+#updateBookPdf {
+    top: 330px;
+    background-color: #f4e700;
+}
+
+.section-top-border {
+    padding: 70px 0;
+    border-top: 1px dotted #eee;
+}
+
+.generic-blockquote {
+    padding: 30px 50px 30px 30px;
+    background: #f9f9ff;
+    border-left: 2px solid #f53f51;
+}
+
+.detailButton {
+    background-image: -webkit-linear-gradient(145deg, #fdd982 0%, #ff634d 100%);
+    border: none;
+    border-radius: 40px;
+}
+
+.topBadge {
+    background-image: -webkit-linear-gradient(145deg, #fdd982 0%, #fdd982 100%);
+    border: none;
+    border-radius: 40px;
+}
